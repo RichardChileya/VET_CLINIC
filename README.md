@@ -1,7 +1,8 @@
-# curriculum-databases-projects-template
+# VET CLINIC DATABASE 
 
-> This template should be used for database related projects at Microverse.
-> Generate your own repository, update this README and edit all files content while working on projects. You should not be adding any new files unless asked otherwise.
+> This is a  simple relational database for a VET CLINIC  
+> In this section, i created a database with the name vet_clinic. The data base contains a table labeled; aimals. 
+> The animals table contents a list of entries 
 
 
 ## Getting Started
@@ -15,23 +16,21 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 ## Authors
 
-👤 **Author1**
+👤 **RICHARD CHILEYA**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@RichardChileya](https://github.com/RichardChileya/)
+- Twitter: [@RichardChileya](https://twitter.com/RichardChileya/)
+- LinkedIn: [richard-chileya](https://linkedin.com/in/richard-chileya-1076b4200//)
 
-👤 **Author2**
+Contributions, issues, and feature requests are welcome !
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+Feel free to check the [issues page](https://github.com/RichardChileya/vet-clinic/issues).
+
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
 
 ## Show your support
 
