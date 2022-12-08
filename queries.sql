@@ -20,9 +20,13 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 BEGIN;
 
   UPDATE animals
-  SET species = 'unspecified';
+  SET species = 'unspecified'; --make changes
+
+  SELECT species FROM animals; --verify changes
 
 ROLLBACK;
+
+  SELECT species from animals; --verify changes were undone
 --
 
 -- New transaction
@@ -30,22 +34,28 @@ BEGIN;
 -- [X] Update the animals table by setting the species column to digimon for all animals that have a name ending in mon.
   UPDATE animals
   SET species = 'digimon'
-  WHERE name LIKE '%mon%';
+  WHERE name LIKE '%mon%'; 
+
+  SELECT species from animals; -- verrify that changes made 
+  COMMIT; 
+
+  SELECT species FROM animals --verify that changes persist after commit 
 
 -- [X] Update the animals table by setting the species column to pokemon for all animals that don't have species already set.
   UPDATE animals
-  SET species = 'pokemon'
+  SET species = 'pokemon' -- make changes
   WHERE species is NULL;
 
--- [X] Commit the transaction.
--- Verify that change was made and persists after commit
+
 COMMIT;
 
 -- [X] Delete all recordes
 BEGIN;
   TRUNCATE TABLE animals;
-ROLLBACK;
+SELECT COUNT(*) FROM ANIMALS; -- verify changes made
 
+   ROLLBACK; 
+   SELECT COUNT(*) FROM ANIMALS; --verify changes 
 -- Inside a transaction:
 BEGIN;
 
@@ -58,10 +68,12 @@ BEGIN;
 
 -- [X] Update all animals' weight to be their weight multiplied by -1.
   UPDATE animals
-  SET weight_kg = -weight_kg;
+  SET weight_kg = -weight_kg; --make change 
+   
+   SELECT weight_kg FROM animals; --verify changes med 
 
 -- [X] Rollback to the savepoint
-  ROLLBACK TO date_birth_Jan_1st_2022;
+  ROLLBACK TO date_birth_Jan_1st_2022; -- verify changes were undone
 
 -- [X] Update all animals' weights that are negative to be their weight multiplied by -1.
   UPDATE animals
