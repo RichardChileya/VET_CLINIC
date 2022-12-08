@@ -104,3 +104,56 @@ GROUP BY species;
 SELECT species, CAST(AVG(escape_attempts) AS DECIMAL(10)) AS "AVG of escaping" FROM animals
 WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
 GROUP BY species;
+
+
+-- Write queries (using JOIN) to answer the following questions:
+-- [X] What animals belong to Melody Pond?
+SELECT name AS "Animal Name", full_name AS "Owner"
+  FROM animals
+  INNER JOIN owners
+  ON animals.owner_id = owners.id
+  WHERE owners.full_name = 'Melody Pond';
+
+-- [X] List of all animals that are pokemon (their type is Pokemon).
+SELECT animals.name AS "Animal Name", species.name AS "Species"
+  FROM animals
+  INNER JOIN species
+  ON animals.species_id = species.id
+  WHERE species.name = 'Pokemon';
+
+-- [X] List all owners and their animals, remember to include those that don't own any animal.
+SELECT owners.full_name AS "Owner", animals.name AS "Animal Name"
+  FROM owners
+  LEFT JOIN animals
+  ON owners.id = animals.owner_id;
+
+-- [X] How many animals are there per species?
+SELECT COUNT(animals.name) AS "Animals Count", species.name AS "Species"
+  FROM animals
+  INNER JOIN species
+  ON animals.species_id = species.id
+  GROUP BY species.name;
+
+-- [X] List all Digimon owned by Jennifer Orwell.
+SELECT owners.full_name AS "Owner", animals.name As "Animal", species.name AS "Species"
+  FROM owners
+  INNER JOIN animals
+  ON owners.id = animals.owner_id
+  INNER JOIN species
+  ON species.id = animals.species_id
+  WHERE species.name = 'Digimon' AND owners.full_name = 'Jennifer Orwell';
+
+-- [X] List all animals owned by Dean Winchester that haven't tried to escape.
+SELECT owners.full_name AS "Owner", animals.name As "Animal" , animals.escape_attempts
+  FROM owners
+  INNER JOIN animals
+  ON owners.id = animals.owner_id
+  WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
+
+-- [X] Who owns the most animals?
+SELECT owners.full_name , COUNT(*)
+  FROM owners
+  INNER JOIN animals
+  ON owners.id = animals.owner_id
+  GROUP BY owners.full_name
+  ORDER BY count DESC LIMIT 1;
