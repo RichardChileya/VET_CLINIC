@@ -32,3 +32,75 @@ VALUES ('Blossom', 'Oct 13, 1998', 3, true, 17);
 
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg)
 VALUES ('Ditto', 'May 14, 2022', 4, true, 22);
+
+-- Insert the following data into the owners table:
+-- [X] Sam Smith 34 years old.
+INSERT INTO owners (full_name, age)
+VALUES ('Sam Smith', 34);
+
+-- [X] Jennifer Orwell 19 years old.
+INSERT INTO owners (full_name, age)
+VALUES ('Jennifer Orwell', 19);
+
+-- [X] Bob 45 years old.
+INSERT INTO owners (full_name, age)
+VALUES ('Bob', 45);
+
+-- [X] Melody Pond 77 years old.
+INSERT INTO owners (full_name, age)
+VALUES ('Melody Pond', 77);
+
+-- [X] Dean Winchester 14 years old.
+INSERT INTO owners (full_name, age)
+VALUES ('Dean Winchester', 14);
+
+-- [X] Jodie Whittaker 38 years old.
+INSERT INTO owners (full_name, age)
+VALUES ('Jodie Whittaker', 38);
+
+-- Insert the following data into the species table:
+-- [X] Pokemon
+INSERT INTO species (name)
+VALUES ('Pokemon');
+
+-- [X] Digimon
+INSERT INTO species (name)
+VALUES ('Digimon');
+
+-- Modify your inserted animals so it includes the species_id value:
+-- [X] If the name ends in "mon" it will be Digimon
+UPDATE animals
+SET species_id = 2
+WHERE name LIKE '%mon%';
+
+-- [X] All other animals are Pokemon
+UPDATE animals
+SET species_id = 1
+WHERE species_id IS NULL;
+
+-- Modify your inserted animals to include owner information (owner_id):
+-- [X] Sam Smith owns Agumon.
+UPDATE animals
+  SET owner_id = (SELECT id from owners WHERE full_name = 'Sam Smith')
+  WHERE name = 'Agumon';
+
+-- [X] Jennifer Orwell owns Gabumon and Pikachu.
+UPDATE animals
+  SET owner_id = (SELECT id from owners WHERE full_name = 'Jennifer Orwell')
+  WHERE name IN ('Gabumon', 'Pikachu');
+
+-- [X] Bob owns Devimon and Plantmon.
+UPDATE animals
+  SET owner_id = (SELECT id from owners WHERE full_name = 'Bob')
+  WHERE name IN ('Devimon', 'Plantmon');
+
+-- [X] Melody Pond owns Charmander, Squirtle, and Blossom.
+UPDATE animals
+  SET owner_id = (SELECT id from owners WHERE full_name = 'Melody Pond')
+  WHERE name IN ('Charmander', 'Squirtle', 'Blossom');
+
+-- [X] Dean Winchester owns Angemon and Boarmon.
+UPDATE animals
+  SET owner_id = (SELECT id from owners WHERE full_name = 'Dean Winchester')
+  WHERE name IN ('Angemon', 'Boarmon');
+  
