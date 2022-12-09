@@ -56,5 +56,41 @@ ALTER TABLE animals
     FOREIGN KEY (owner_id)
     REFERENCES owners(id);
 
+-- [x] Create a table for Vets
+CREATE TABLE  vets(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(150),
+    age INT,
+    date_of_graduation DATE
+);
 
+-- [x] Create a many to many relationship between vets and species
+
+CREATE TABLE specializations (
+    vet_id INT,
+    species_id INT,
+    PRIMARY KEY (vet_id, species_id),
+    CONSTRAINT fk_vets
+        FOREIGN KEY (vet_id)
+            REFERENCES vets(id),
+    CONSTRAINT fk_species
+        FOREIGN KEY (species_id)
+            REFERENCES species(id)
+);
+
+-- [x] A many to many relationship is established between the animals and vets table 
+-- [x] Create a join table for visits to manage this relationship by keeping track of visits
+
+CREATE TABLE visits(
+    vet_id INT,
+    animal_id INT,
+    date_of_visit DATE,
+    PRIMARY KEY (vet_id, animal_id),
+    CONSTRAINT fk_vets
+        FOREIGN KEY (vet_id)
+            REFERENCES vets(id),
+    CONSTRAINT fk_animals
+        FOREIGN KEY (animal_id)
+            REFERENCES animals(id)
+);
 
